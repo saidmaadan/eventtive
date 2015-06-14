@@ -2,7 +2,6 @@
 
 exports = module.exports = function(app, mongoose) {
   var eventSchema = new mongoose.Schema({
-    _id: { type: String },
     name: { type: String, required:true},
     description: { type: String, },
     venue: { type: String, },
@@ -21,5 +20,5 @@ exports = module.exports = function(app, mongoose) {
   eventSchema.index({ endTime: 1 });
   eventSchema.index({ search: 1 });
   eventSchema.set('autoIndex', (app.get('env') === 'development'));
-  app.db.model('Category', eventSchema);
+  app.db.model('Event', eventSchema);
 };

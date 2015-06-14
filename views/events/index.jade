@@ -1,0 +1,20 @@
+extends ../../layouts/default
+
+block head
+  title View Events
+
+block body
+  div.row
+    div.col-sm-8
+      div.page-header
+        h1 View Events
+      ul.events
+        each event, i in data
+          li
+            h3
+              a(href='/events/event/#{event._id}') #{event.name}
+            | Posted By #{event.username}
+            p #{event.description}
+    div.col-sm-4
+      dic-page-header
+        h1 Recent Events
