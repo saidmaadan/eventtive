@@ -1,4 +1,3 @@
-'use strict';
 
 $(document).ready(function(){
 	$('#deleteEvent').on('click', function(e){
@@ -11,6 +10,18 @@ $(document).ready(function(){
 			}
 		});
 		window.location = '/events';
+	});
+
+	$('#deleteBlog').on('click', function(e){
+		deleteId = $('#deleteBlog').data('delete');
+		$.ajax({
+			url: '/blogs/delete/'+deleteId,
+			type:'DELETE',
+			success: function(result){
+
+			}
+		});
+		window.location = '/blogss';
 	});
 });
 

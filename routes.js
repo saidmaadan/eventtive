@@ -47,7 +47,7 @@ exports = module.exports = function(app, passport) {
 
   //blog route
   app.get('/blogs', require('./views/blogs/index').find);
-  app.get('/blogs/event/:id', require('./views/blogs/index').read);
+  app.get('/blogs/blog/:id', require('./views/blogs/index').read);
   app.get('/blogs/add', require('./views/blogs/index').add);
   app.post('/blogs/', require('./views/blogs/index').create);
   app.get('/myblogs/', require('./views/myblogs/index').find);

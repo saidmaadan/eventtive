@@ -1,20 +1,20 @@
 extends ../../layouts/default
 
 block head
-  title View Bloks
+  title View Blogs
 
 block body
   div.row
     div.col-sm-8
       div.page-header
-        h1 View Bloks
+        h1 View Blogs
       ul.blogs
         each blog, i in data
           li
             h3
               a(href='/blogs/blog/#{blog._id}') #{blog.title}
-            | Posted By #{blog.author}
+            | Posted By #{blog.username}
             p #{blog.description}
     div.col-sm-4
       dic-page-header
-        h1 Recent Blogss
+        h1 Recent Blogs
