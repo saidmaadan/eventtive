@@ -23,11 +23,18 @@ html
             li: a(href='/') Home
             li: a(href='/about/') About
             li: a(href='/events/') Events
+            li: a(href='/blogs/') Blogs
             if !user
               li: a(href='/signup/') Sign Up
             li: a(href='/contact/') Contact
           ul.nav.navbar-nav.navbar-right
             if user && user.username
+              li: a(href='/myblogs')
+                i.fa.fa-calendar
+                |   My Post
+              li: a(href='/blogs/add')
+                i.fa.fa-plus
+                |   Add Post
               li: a(href='/myevents')
                 i.fa.fa-calendar
                 |   My Event

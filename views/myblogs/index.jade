@@ -1,0 +1,31 @@
+extends ../../layouts/default
+
+block head
+  title My Blogs
+
+block body
+  div.row
+    div.col-sm-8
+      div.page-header
+        h1 My Blogs
+      if data
+        ul.blogs
+          each blog, i in data
+            li
+              .row
+                .col-sm-8
+                  h3
+                    a(href='/blogs/blog/#{blog._id}') #{blog.title}
+                .col-sm-4.pull-right
+                  button.btn.btn-info
+                    i.fa.fa-pencil
+                    a(href='/blogs/edit/#{blog._id}')  Edit
+                    &nbsp;&nbsp;
+                  button.btn.btn-danger
+                    i.fa.fa-trash 
+                    a(id='deleteBlog', data-delete='#{blog._id}', href='#')  Delete
+      else
+        <p>You have no blogs</p>
+    div.col-sm-4
+      div.page-header
+        h1 Recent Blogs

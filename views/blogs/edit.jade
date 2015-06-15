@@ -1,0 +1,22 @@
+extends ../../layouts/default
+
+block head
+	title Add Blog
+
+block body
+	div.row
+		div.col-sm-8
+			div.page-header
+				h1 Add Blog
+				form(method='post', action='/blogs/update/#{blog._id}')
+					div.form-group
+						label Blog Title
+						input.form-control(type='text', name='title', value='#{blog.title}')
+					div.form-group
+						label Blog Description
+						textarea.form-control(type='text', name='description') #{blog.description}
+					div.form-group
+						button.btn.btn-info.btn-signup(type='submit') Update Blog
+		div.col-sm-4
+			div.page-header
+				h1 Recent Blogs

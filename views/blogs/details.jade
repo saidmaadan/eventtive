@@ -1,0 +1,23 @@
+extends ../../layouts/default
+
+block head
+	title #{blog.title}
+
+block body
+	div.row
+		div.col-sm-8
+			div.page-header
+				h1 #{blog.title}
+					small &nbsp; Posted by #{blog.username}
+			ul.blogs-list
+				li
+					strong Date:
+					| #{blog.date}
+			p #{blog.description}
+			p
+				i.fa.fa-arrow-circle-left
+				a(href='/blogs') All Blogs
+
+		div.col-sm-4
+			div.page-header
+				h1 Reviews
