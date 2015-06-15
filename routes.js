@@ -45,6 +45,17 @@ exports = module.exports = function(app, passport) {
   app.post('/events/update/:id', require('./views/events/index').update);
   app.delete('/events/delete/:id', require('./views/events/index').delete);
 
+  //blog route
+  app.get('/blogs', require('./views/blogs/index').find);
+  app.get('/blogs/event/:id', require('./views/blogs/index').read);
+  app.get('/blogs/add', require('./views/blogs/index').add);
+  app.post('/blogs/', require('./views/blogs/index').create);
+  app.get('/myblogs/', require('./views/myblogs/index').find);
+  app.get('/blogs/edit/:id', require('./views/blogs/index').edit);
+  app.post('/blogs/update/:id', require('./views/blogs/index').update);
+  app.delete('/blogs/delete/:id', require('./views/blogs/index').delete);
+
+
 
   //sign up
   app.get('/signup/', require('./views/signup/index').init);
