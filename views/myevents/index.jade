@@ -12,15 +12,18 @@ block body
         ul.events
           each event, i in data
             li
-              h3
-                a(href='/events/event/#{event._id}') #{event.name}
-                &nbsp;&nbsp;
-                h4
-                  i.fa.fa-pencil
-                  a(href='/events/edit/#{event._id}') Edit
-                  &nbsp;&nbsp;
-                  i.fa.fa-trash
-                  a(id='deleteEvent', data-delete='#{event._id}', href='#') Delete
+              .row
+                .col-sm-8.myevent-name
+                  h3
+                    a(href='/events/event/#{event._id}') #{event.name}
+                .col-sm-4.pull-right.myevent-edit
+                  button.btn.btn-info
+                    i.fa.fa-pencil
+                    a(href='/events/edit/#{event._id}')  Edit
+                    &nbsp;&nbsp;
+                  button.btn.btn-danger
+                    i.fa.fa-trash 
+                    a(id='deleteEvent', data-delete='#{event._id}', href='#')  Delete
       else
         <p>You have no events</p>
     div.col-sm-4
