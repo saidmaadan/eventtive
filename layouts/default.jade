@@ -28,7 +28,7 @@ html
             li: a(href='/contact/') Contact
           ul.nav.navbar-nav.navbar-right
             if user && user.username
-              li: a(href='/myevent')
+              li: a(href='/myevents')
                 i.fa.fa-calendar
                 |   My Event
               li: a(href='/events/add')
@@ -44,6 +44,7 @@ html
 
     div.page
       div.container
+        != messages()
         block body
 
     div.footer

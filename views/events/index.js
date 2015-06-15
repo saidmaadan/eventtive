@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 exports.find = function(req, res, next){
   req.query.name = req.query.name ? req.query.name : '';
@@ -57,7 +57,7 @@ exports.add = function(req, res){
   }
   res.render('events/add');
 
-}
+};
 
 exports.create = function(req, res, next){
   var workflow = req.app.utility.workflow(req, res);
@@ -89,9 +89,63 @@ exports.create = function(req, res, next){
       }
 
       workflow.outcome.record = event;
-      req.flash('success': 'Event Added');
+      req.flash('success', 'Event Added');
       res.location('/events');
-      res.redirect('/event');
+      res.redirect('/events');
+    });
+  });
+
+  workflow.emit('validate');
+};
+
+exports.edit = function(req, res, next){
+  req.app.db.models.Event.findById(req.params.id).exec(function(err, event) {
+    if (err) {
+      return next(err);
+    }
+
+    if (req.xhr) {
+      res.send(event);
+    }
+    else {
+      res.render('events/edit', { event: event });
+    }
+  });
+};
+
+exports.update = function(req, res, next){
+  var workflow = req.app.utility.workflow(req, res);
+
+  workflow.on('validate', function() {
+    if (!req.body.name) {
+      workflow.outcome.errors.push('Please enter a name.');
+      return workflow.emit('response');
+    }
+    workflow.emit('updateEvent');
+  });
+
+  workflow.on('updateEvent', function() {
+    var fieldsToSet = {
+      name: req.body.name,
+      description: req.body.description,
+      venue: req.body.venue,
+      date: req.body.date,
+      startTime: req.body.startTime,
+      endTime: req.body.endTime,
+      username: req.user.username,
+      search: [
+        req.body.name
+      ]
+    };
+    req.app.db.models.Event.findByIdAndUpdate(req.params.id, fieldsToSet, function(err, event) {
+      if (err) {
+        return workflow.emit('exception', err);
+      }
+
+      workflow.outcome.record = event;
+      req.flash('success', 'Event Updated');
+      res.location('/events/event/'+req.params.id);
+      res.redirect('/events/event/'+req.params.id);
     });
   });
 
